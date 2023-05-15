@@ -31,9 +31,9 @@
   <body>
     <script src="{{asset('assets/static/js/initTheme.js')}}"></script>
     <div id="app">
-      @include('layouts.sidebarAdmin')
+      @include('layouts.admin.sidebar')
       <div id="main" class="layout-navbar navbar-fixed">
-        @include('layouts.headerAdmin')
+        @include('layouts.admin.navbar')
         <div id="main-content">
           <div class="page-heading">
             <div class="page-title">
@@ -63,7 +63,7 @@
             </section>
           </div>
         </div>
-        @include('layouts.footerAdmin')
+        @include('layouts.admin.footer')
       </div>
     </div>
         <!-- Jquery -->

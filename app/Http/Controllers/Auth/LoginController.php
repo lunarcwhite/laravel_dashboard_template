@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use App\Models\User;
 use Auth;
 
@@ -16,13 +17,13 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        $validator = $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
         ]);
 
         // If the validation fails, redirect back to the login page
-        if ($validator) {
+        if ($validator->passes()) {
             $user = User::where('username', $request->username)
                 ->orWhere('email', $request->username)
                 ->first();
