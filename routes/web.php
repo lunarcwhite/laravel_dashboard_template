@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\UserSettingsController;
 
 /*
@@ -42,9 +43,15 @@ Route::middleware('revalidate')->group(function () {
         });
     });
     Route::middleware('auth')->group(function () {
-        Route::controller(DashboardController::class)->group(function () {
-            Route::get('/dashboard', 'index')->name('dashboard');
+        Route::controller(LogoutController::class)->group(function () {
             Route::post('/logout', 'logout')->name('logout');
+        });
+        Route::name('dashboard')->group(function (){
+            Route::prefix('/dashboard')->group(function (){
+                Route::controller(DashboardController::class)->group(function () {
+                    Route::get('/dashboard', 'index')->name('dashboard');
+                });
+            });
         });
         Route::controller(UserSettingsController::class)->group(function () {
             Route::prefix('dashboard/user')->group(function () {
