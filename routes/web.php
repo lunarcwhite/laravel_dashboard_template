@@ -49,7 +49,7 @@ Route::middleware('revalidate')->group(function () {
         Route::name('dashboard')->group(function (){
             Route::prefix('/dashboard')->group(function (){
                 Route::controller(DashboardController::class)->group(function () {
-                    Route::get('/dashboard', 'index')->name('dashboard');
+                    Route::get('', 'index')->name('');
                 });
             });
         });
