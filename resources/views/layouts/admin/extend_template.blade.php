@@ -85,5 +85,21 @@
         </div>
     </div> -->
 @stop
-@push('js')
-@endpush
+<!-- @push('js')
+    <script>
+        function editKategori(id, modal){
+            $.ajax({
+                type: "get",
+                url: `{{url('dashboard/kategori/${id}/edit')}}`,
+                dataType: 'json',
+                success: function(res){
+                $("#nama_kategori").val(res.nama_kategori);
+                $("#id_kategori").val(res.id);
+                  $(`#${modal}`).modal('show');  
+                  $(`#labelModalKategori`).text('Edit Kategori');
+                  $(`#btn-save`).text('Update');
+                }
+            });
+        }
+    </script>
+@endpush -->
